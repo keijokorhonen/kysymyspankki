@@ -11,6 +11,10 @@ import spark.template.thymeleaf.ThymeleafTemplateEngine;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
+        if (System.getenv("PORT") != null) {
+            Spark.port(Integer.valueOf(System.getenv("PORT")));
+        }
+        
         Connection connection = DriverManager.getConnection("jdbc:sqlite:kysymyspankki.db");
 
         Spark.get("*", (req, res) -> {
