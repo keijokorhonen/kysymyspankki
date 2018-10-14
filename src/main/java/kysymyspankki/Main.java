@@ -40,5 +40,12 @@ public class Main {
             res.redirect("/");
             return "";
         });
+        
+        Spark.get("/kysymykset/:id", (req, res) -> {
+            HashMap map = new HashMap<>();
+            
+            map.put("kysymys", kysymysDao.findOne(Integer.parseInt(req.params("id"))));
+            return new ModelAndView(map, "kysymys");
+        }, new ThymeleafTemplateEngine());
     }
 }
