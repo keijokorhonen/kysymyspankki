@@ -8,7 +8,26 @@
 
     <body>
 
-        <h1>Hei maailma!</h1>
+        <h1>Kysymykset</h1>
+        
+        <ul>
+            <li th:each="kysymys : {kysymykset}">
+                <a th:href="@{~kysymykset/{id}{id=${kysymys.id}}">
+                    <span th:text="${kysymys.kysymysteksti}"/>
+                </a>
+            </li>
+        </ul>
+
+        <h3>Luo uusi Kysymys</h3>
+        <form method="POST" action="/luo">
+            <span>Kurssi: </span>
+            <input type="text" name="kurssi"/><br/>
+            <span>Aihe: </span>
+            <input type="text" name="aihe"/><br/>
+            <span>Kysymysteksti: </span>
+            <input type="text" name="kysymysteksti"/><br/>
+            <input type="submit" value="Luo"/>
+        </form>
 
     </body>
 </html>
