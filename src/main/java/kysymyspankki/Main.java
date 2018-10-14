@@ -47,5 +47,11 @@ public class Main {
             map.put("kysymys", kysymysDao.findOne(Integer.parseInt(req.params("id"))));
             return new ModelAndView(map, "kysymys");
         }, new ThymeleafTemplateEngine());
+        
+        Spark.post("/poista/:id", (req, res) -> {
+            kysymysDao.delete(Integer.parseInt(req.params("id")));
+            res.redirect("/");
+            return "";
+        });
     }
 }
