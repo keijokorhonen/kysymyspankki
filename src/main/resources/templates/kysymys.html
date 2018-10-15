@@ -21,7 +21,7 @@
                 <div th:if="${vastaus.oikein} == false">
                     <strong>väärin</strong>
                 </div>
-                <form method="POST" th:action="@{'~/kysymykset/' + ${vastaus.kysymys.id} + 'poista/' + ${vastaus.id}}">
+                <form method="POST" th:action="@{'~/kysymykset/' + ${vastaus.kysymys.id} + '/poista/' + ${vastaus.id}}">
                     <input type="submit" value="Poista"/>
                 </form>
             </li>
