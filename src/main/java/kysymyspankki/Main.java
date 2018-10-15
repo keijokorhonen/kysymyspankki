@@ -7,6 +7,7 @@ import kysymyspankki.dao.KysymysDao;
 import kysymyspankki.dao.VastausDao;
 import kysymyspankki.database.Database;
 import kysymyspankki.domain.Kysymys;
+import kysymyspankki.domain.Vastaus;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -55,7 +56,9 @@ public class Main {
             String oikein = req.queryParams("oikein");
             System.out.println(oikein);
             
-            kysymysDao.saveOrUpdate(new Kysymys(null, vastausteksti, vastausteksti, null));
+            Kysymys kysymys = kysymysDao.findOne(Integer.parseInt(req.params("id")));
+            
+            vastausDao.saveOrUpdate(new Vastaus(null, kysymys, vastausteksti, null));
             res.redirect("/");
             return "";
         });
