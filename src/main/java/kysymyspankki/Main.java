@@ -55,6 +55,8 @@ public class Main {
             String vastausteksti = req.queryParams("vastausteksti");
             String checkboxValue = req.queryParams("oikein");
             
+            System.out.println("This is the checkbox value: " + checkboxValue);
+            
             int kysymysId = Integer.parseInt(req.params("id"));
             
             Boolean oikein = null;
