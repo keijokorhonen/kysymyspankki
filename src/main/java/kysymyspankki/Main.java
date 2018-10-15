@@ -43,8 +43,10 @@ public class Main {
         
         Spark.get("/kysymykset/:id", (req, res) -> {
             HashMap map = new HashMap<>();
+            int kysymysId = Integer.parseInt(req.params("id"));
             
-            map.put("kysymys", kysymysDao.findOne(Integer.parseInt(req.params("id"))));
+            map.put("kysymys", kysymysDao.findOne(kysymysId));
+            map.put("vastaukset", vastausDao.findAllByKysymysId(kysymysId));
             return new ModelAndView(map, "kysymys");
         }, new ThymeleafTemplateEngine());
         

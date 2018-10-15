@@ -74,6 +74,38 @@ public class VastausDao implements Dao<Vastaus, Integer> {
 
         return vastaukset;
     }
+    
+    public List<Vastaus> findAllByKysymysId(Integer kysymysId) throws SQLException {
+        List<Vastaus> vastaukset;
+
+        try (Connection connection = database.getConnection()) {
+
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Vastaus WHERE kysymys_id=?");
+            stmt.setInt(1, kysymysId);
+
+            ResultSet rs = stmt.executeQuery();
+
+            vastaukset = new ArrayList<>();
+
+            while (rs.next()) {
+
+                Kysymys kysymys = kysymysDao.findOne(rs.getInt("kysymys_id"));
+                
+                Vastaus vastaus = new Vastaus(rs.getInt("id"), kysymys,
+                        rs.getString("vastausteksti"), rs.getBoolean("oikein"));
+
+                vastaukset.add(vastaus);
+
+            }
+
+            stmt.close();
+
+            rs.close();
+
+        }
+
+        return vastaukset;
+    }
 
     @Override
     public Vastaus saveOrUpdate(Vastaus object) throws SQLException {

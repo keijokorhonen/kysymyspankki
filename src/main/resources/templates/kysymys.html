@@ -9,9 +9,19 @@
     <body>
         <h1><span th:text="${kysymys.kysymysteksti}"></span></h1>
 
-        Kurssi: <span th:text="${kysymys.kurssi}"></span>
+        Kurssi: <span th:text="${kysymys.kurssi}"></span><br/>
         Aihe: <span th:text="${kysymys.aihe}"></span>
 
-       
+        <ul>
+            <li th:each="vastaus : ${vastaukset}">
+                <span th:text="${vastaus.vastausteksti}"/>
+                <div th:if="${vastaus.oikein} == true">
+                    <strong>oikein</strong>
+                </div>
+                <div th:if="${vastaus.oikein} == false">
+                    <strong>väärin</strong>
+                </div>
+            </li>
+        </ul>
     </body>
 </html>
