@@ -55,6 +55,8 @@ public class Main {
             String vastausteksti = req.queryParams("vastausteksti");
             String checkboxValue = req.queryParams("oikein");
             
+            int kysymysId = Integer.parseInt(req.params("id"));
+            
             Boolean oikein = null;
             
             if (checkboxValue.equals("on")) {
@@ -66,7 +68,7 @@ public class Main {
             Kysymys kysymys = kysymysDao.findOne(Integer.parseInt(req.params("id")));
             
             vastausDao.saveOrUpdate(new Vastaus(null, kysymys, vastausteksti, oikein));
-            res.redirect("/");
+            res.redirect("/kysymykset/" + kysymysId);
             return "";
         });
         
