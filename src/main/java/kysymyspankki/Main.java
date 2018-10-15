@@ -54,17 +54,15 @@ public class Main {
         Spark.post("/kysymykset/:id", (req, res) -> {
             String vastausteksti = req.queryParams("vastausteksti");
             String checkboxValue = req.queryParams("oikein");
-            
-            System.out.println("This is the checkbox value: " + checkboxValue);
-            
+                        
             int kysymysId = Integer.parseInt(req.params("id"));
             
             Boolean oikein = null;
             
-            if (checkboxValue.equals("on")) {
-                oikein = true;
-            } else {
+            if (checkboxValue == null) {
                 oikein = false;
+            } else if (checkboxValue.equals("on")) {
+                oikein = true;
             }
             
             Kysymys kysymys = kysymysDao.findOne(Integer.parseInt(req.params("id")));
