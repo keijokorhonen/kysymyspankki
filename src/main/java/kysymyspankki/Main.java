@@ -50,6 +50,16 @@ public class Main {
             return new ModelAndView(map, "kysymys");
         }, new ThymeleafTemplateEngine());
         
+        Spark.post("/kysymykset/:id", (req, res) -> {
+            String vastausteksti = req.queryParams("vastausteksti");
+            String oikein = req.queryParams("oikein");
+            System.out.println(oikein);
+            
+            kysymysDao.saveOrUpdate(new Kysymys(null, vastausteksti, vastausteksti, null));
+            res.redirect("/");
+            return "";
+        });
+        
         Spark.post("/poista/:id", (req, res) -> {
             kysymysDao.delete(Integer.parseInt(req.params("id")));
             res.redirect("/");

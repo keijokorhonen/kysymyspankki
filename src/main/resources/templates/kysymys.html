@@ -23,5 +23,15 @@
                 </div>
             </li>
         </ul>
+        
+        
+        <h3>Luo uusi vastausvaihtoehto</h3>
+        <form method="POST" th:action="@{'~/kysymykset' + ${kysymys.id}}">
+            <span>Vastausteksti: </span>
+            <input type="text" name="vastausteksti"/><br/>
+            <span>Oikein: </span>
+            <input type="checkbox" name="oikein"/><br/>
+            <input type="submit" value="Luo"/>
+        </form>
     </body>
 </html>
