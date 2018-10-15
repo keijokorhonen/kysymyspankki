@@ -37,7 +37,8 @@ public class Main {
             String aihe = req.queryParams("aihe");
             String kysymysteksti = req.queryParams("kysymysteksti");
 
-            if (!kurssi.isEmpty() && !aihe.isEmpty() && !kysymysteksti.isEmpty()) {
+            if (!kurssi.isEmpty() && !aihe.isEmpty() && !kysymysteksti.isEmpty()
+                    && kurssi.length() <= 50 && aihe.length() <= 50 && kysymysteksti.length() <= 255) {
                 kysymysDao.saveOrUpdate(new Kysymys(null, kurssi, aihe, kysymysteksti));
             }
             res.redirect("/");
@@ -69,7 +70,7 @@ public class Main {
 
             Kysymys kysymys = kysymysDao.findOne(Integer.parseInt(req.params("id")));
 
-            if (!vastausteksti.isEmpty()) {
+            if (!vastausteksti.isEmpty() && vastausteksti.length() <= 255) {
                 vastausDao.saveOrUpdate(new Vastaus(null, kysymys, vastausteksti, oikein));
             }
             res.redirect("/kysymykset/" + kysymysId);
