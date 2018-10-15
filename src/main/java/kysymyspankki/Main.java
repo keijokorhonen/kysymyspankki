@@ -54,7 +54,7 @@ public class Main {
         Spark.post("/kysymykset/:id", (req, res) -> {
             String vastausteksti = req.queryParams("vastausteksti");
             String oikein = req.queryParams("oikein");
-            System.out.println(oikein);
+            System.out.println("This is the value from the checkbox: " + oikein);
             
             Kysymys kysymys = kysymysDao.findOne(Integer.parseInt(req.params("id")));
             
