@@ -21,10 +21,13 @@
                 <div th:if="${vastaus.oikein} == false">
                     <strong>väärin</strong>
                 </div>
+                <form method="POST" th:action="@{'~/kysymykset/' + ${vastaus.kysymys.id} + 'poista/' + ${vastaus.id}}">
+                    <input type="submit" value="Poista"/>
+                </form>
             </li>
         </ul>
-        
-        
+
+
         <h3>Luo uusi vastausvaihtoehto</h3>
         <form method="POST" th:action="@{'~/kysymykset/' + ${kysymys.id}}">
             <span>Vastausteksti: </span>
@@ -33,8 +36,9 @@
             <input type="checkbox" name="oikein"/><br/>
             <input type="submit" value="Luo"/>
         </form>
-        
+
+        <br/>
         <a href="/">Takaisin kotisivulle</a>
-        
+
     </body>
 </html>
