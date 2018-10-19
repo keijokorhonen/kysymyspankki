@@ -9,16 +9,17 @@
     <body>
 
         <h1>Kysymykset</h1>
-        
+
         <ul>
             <li th:each="kysymys : ${kysymykset}">
                 <a th:href="@{'~/kysymykset/' + ${kysymys.id}}">
                     <span th:text="${kysymys.kysymysteksti}"/>
-                    (<span th:text="${kysymys.kurssi}"/>, <span th:text="${kysymys.aihe}"/>)
-                    <form method="POST" th:action="@{'~/poista/' + ${kysymys.id}}">
-                        <input type="submit" value="Poista"/>
-                    </form>
                 </a>
+                (<span th:text="${kysymys.kurssi}"/>, <span th:text="${kysymys.aihe}"/>)
+                <form method="POST" th:action="@{'~/poista/' + ${kysymys.id}}">
+                    <input type="submit" value="Poista"/>
+                </form>
+
             </li>
         </ul>
 
